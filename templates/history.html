@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    quoted
+{% endblock %}
+
+{% block main %}
+<div class="section">
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Price</th>
+                <th>Number of shares</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for history in historys%}
+                {% if history['operation']%}
+                    <tr class="bg-success"><th>{{ history['symbol'] }}</th><th>{{ history['price'] | usd }}</th><th>{{ history['count'] }}</th><th>{{ history['date'] }}</th></tr>
+                {% else %}
+                    <tr class="bg-danger"><th>{{ history['symbol'] }}</th><th>{{ history['price'] | usd}}</th><th>{{ history['count'] }}</th><th>{{ history['date'] }}</th></tr>
+                {% endif %}
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

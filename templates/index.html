@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    index
+{% endblock %}
+
+{% block main %}
+<div class="section">
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Count</th>
+                <th>Price</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for stock in stocks%}
+            <tr><th>{{ stock['symbol'] }} </th><th>{{ stock['count'] }}</th><th>{{ stock['user_id'] | usd }}</th><th>{{ (stock['user_id'] * stock['count']) | usd }}</th></tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th>Current cash balance</th>
+                <th>Grand total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><th>{{ cash | usd}}</th><th>{{total | usd}}</th></tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
